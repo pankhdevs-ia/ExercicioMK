@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camada de Rede do Modelo OSI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Camada de Rede do Modelo OSI</h1>
+    <nav>
+      <a href="#secao1">[1. Funções Principais]</a>
+      <a href="#secao2">[2. Endereçamento IP]</a>
+      <a href="#secao3">[3. Comparativo IPv4 x IPv6]</a>
+      <a href="#secao4">[4. Cabeçalho IPv4]</a>
+      <a href="#secao5">[5. Etapas Simplificadas do Roteamento]</a>
+      <a href="#secao6">[6. Material Complementar]</a>
+    </nav>
+  </header>
+  <hr>
+  <main>
+    <p>A Camada de Rede é a terceira camada do modelo de referência OSI (Open Systems Interconnection). Sua principal responsabilidade é levar os pacotes de dados da origem até o destino, possivelmente atravessando várias redes intermediárias.</p>
+    <p>Enquanto a camada de enlace se preocupa em entregar quadros dentro de uma mesma rede local, a camada de rede resolve o problema maior: como sair de uma rede e chegar a outra. É aqui que vivem o endereçamento lógico e o roteamento.</p>
+
+    <section id="secao1">
+      <h2>1. Funções Principais</h2>
+      <p>As responsabilidades centrais desta camada são:</p>
+      <ul>
+        <li><b>Endereçamento lógico:</b> atribuir endereços (como o IP) que identificam um dispositivo em qualquer rede.</li>
+        <li><b>Roteamento:</b> escolher o melhor caminho que um pacote deve seguir entre a origem e o destino.</li>
+        <li><b>Encaminhamento (forwarding):</b> repassar o pacote de um roteador para o próximo, com base na tabela de rotas.</li>
+        <li><b>Fragmentação:</b> dividir pacotes grandes em pedaços menores quando a rede de destino não suporta o tamanho original.</li>
+      </ul>
+      <p>Protocolo mais conhecido desta camada: o <b>IP (Internet Protocol)</b>. Outros exemplos são o ICMP e os protocolos de roteamento.</p>
+    </section>
+
+    <section id="secao2">
+      <h2>2. Endereçamento IP</h2>
+      
+      <h3>2.1 IPv4</h3>
+      <p>O IPv4 utiliza endereços de 32 bits, o que resulta em aproximadamente 2<sup>32</sup> endereços possíveis (cerca de 4,3 bilhões). A notação é decimal com pontos, dividida em quatro octetos.</p>
+      <p>Exemplo de endereço IPv4 e sua estrutura:</p>
+      <p><b>IPv4:</b> 192 . 168 . 1 . 10<br>
+      <b>bits:</b> [8 bits] [8 bits] [8 bits] [8 bits] = 32 bits</p>
+
+      <h3>2.2 IPv6</h3>
+      <p>O IPv6 foi criado para resolver o esgotamento do IPv4. Ele usa endereços de 128 bits, oferecendo cerca de 2<sup>128</sup> endereços — um número gigantesco (aproximadamente 3.4 &times; 10<sup>38</sup>). A notação é hexadecimal, separada por dois-pontos.</p>
+      <p>Exemplo de endereço IPv6:</p>
+      <p><b>IPv6:</b> 2001:0db8:85a3:0000:0000:8a2e:0370:7334<br>
+      [--- 8 grupos de 16 bits cada = 128 bits ---]</p>
+    </section>
+
+    <section id="secao3">
+      <h2>3. Comparativo IPv4 x IPv6</h2>
+      <table border="1">
+        <caption><i>Tabela 1 - Principais diferenças entre IPv4 e IPv6</i></caption>
+        <thead>
+          <tr>
+            <th>Critério</th>
+            <th>IPv4</th>
+            <th>IPv6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tamanho do endereço</td>
+            <td>32 bits</td>
+            <td>128 bits</td>
+          </tr>
+          <tr>
+            <td>Notação</td>
+            <td>Decimal com pontos</td>
+            <td>Hexadecimal com dois-pontos</td>
+          </tr>
+          <tr>
+            <td>Nº aproximado de endereços</td>
+            <td>2<sup>32</sup> (~4,3 bilhões)</td>
+            <td>2<sup>128</sup> (~3,4 &times; 10<sup>38</sup>)</td>
+          </tr>
+          <tr>
+            <td>Exemplo</td>
+            <td>192.168.1.10</td>
+            <td>2001:0db8::7334</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="secao4">
+      <h2>4. Cabeçalho IPv4</h2>
+      <table border="1">
+        <tr>
+          <td><b>Versão</b></td>
+          <td><b>Tamanho do cabeçalho</b></td>
+          <td><b>Serviços diferenciados</b></td>
+          <td><b>Tamanho total</b></td>
+        </tr>
+        <tr>
+          <td colspan="2"><b>Identificação</b></td>
+          <td><b>Flags</b></td>
+          <td><b>Deslocamento do fragmento</b></td>
+        </tr>
+        <tr>
+          <td><b>Tempo de vida</b></td>
+          <td><b>Protocolo</b></td>
+          <td colspan="2"><b>Soma de verificação do cabeçalho</b></td>
+        </tr>
+        <tr>
+          <td colspan="4"><b>Endereço de origem</b></td>
+        </tr>
+        <tr>
+          <td colspan="4"><b>Endereço de destino</b></td>
+        </tr>
+        <tr>
+          <td colspan="4"><b>Opções + complemento</b></td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="secao5">
+      <h2>5. Etapas Simplificadas do Roteamento</h2>
+      <p>O caminho básico de um pacote sendo roteado pode ser resumido assim:</p>
+      <ol>
+        <li>O dispositivo de origem monta o pacote com o IP de destino.</li>
+        <li>O pacote é enviado ao gateway padrão (o roteador da rede local).</li>
+        <li>O roteador consulta sua tabela de rotas e escolhe o próximo salto.</li>
+        <li>O pacote é encaminhado de roteador em roteador até a rede de destino.</li>
+        <li>O último roteador entrega o pacote ao dispositivo de destino.</li>
+      </ol>
+    </section>
+
+    <section id="secao6">
+      <h2>6. Material Complementar</h2>
+      
+      <h3>6.1. Ilustração do modelo OSI</h3>
+      <p>Figura ilustrativa com as sete camadas do modelo OSI:</p>
+      <img src="img/tor.png" alt="Camadas do Modelo OSI">
+    
+
+      <h3>6.2. Vídeo explicativo</h3>
+            <img src="img/car.png" alt="Ilustração do Pacote de Roteamento">
+              <br>
+
+      <video controls width="400">
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+      </video>
+
+      <h3>6.3. Áudio (resumo em podcast)</h3>
+      <audio controls>
+        <source src="audio.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+      </audio>
+
+      <h3>6.4. Leitura recomendada</h3>
+      <p>Para aprofundar, consulte a documentação da <a href="https://datatracker.ietf.org/doc/html/rfc791" target="_blank">RFC do Protocolo IP</a>.</p>
+    </section>
+  </main>
+
+  <hr>
+
+  <footer>
+    <p><b>Termo no modelo TCP/IP:</b> Camada de Internet</p>
+    <p><b>Termo no modelo OSI:</b> Camada de Rede</p>
+    <p><small>Material didático produzido para fins de estudo de HTML5. Última revisão: agosto de 2026.</small></p>
+  </footer>
+
+</body>
+</html>
